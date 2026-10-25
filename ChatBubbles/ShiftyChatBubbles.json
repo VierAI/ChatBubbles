@@ -1,16 +1,20 @@
 {
   "Author": "Haplo064, Kayle, ShiftyKiwi",
-  "Name": "Chat Bubbles+",
-  "Punchline": "Enables in-game chat bubbles.",
-  "Description": "Using native chat bubble display, see who is talking about what in a more natural fashion.",
+  "Name": "Chat Bubbles+ (VierAI-fied)",
+  "Punchline": "Enables in-game chat bubbles. Unofficial VierAI-fied fork (AI generated code).",
+  "Description": "Using native chat bubble display, see who is talking about what in a more natural fashion.\n\nChat Bubbles+ by Haplo064, Kayle, ShiftyKiwi - VierAI-fied\n\nForked from the official Chat Bubbles+ (https://github.com/ShiftyKiwi/ChatBubbles).\n\nAI generated code: unofficial build, not supported by the original authors. Do not report issues from this build upstream.\n\nAdded:\n- Sliders for the number settings (Ctrl+click to type)\n\nFixed:\n- Settings window crash on current Dalamud",
   "InternalName": "ShiftyChatBubbles",
-  "AssemblyVersion": "2.1.9.21",
+  "IconUrl": "https://raw.githubusercontent.com/VierAI/ChatBubbles/vierai/vierai/icon.png",
+  "AssemblyVersion": "2.1.9.2103",
   "ApplicableVersion": "any",
   "DalamudApiLevel": 15,
-  "RepoUrl": "https://github.com/ShiftyKiwi/ChatBubbles",
-  "Changelog": "Updated for FFXIV Patch 7.5 and Dalamud API15.",
-  "IconUrl": "https://raw.githubusercontent.com/ShiftyKiwi/ChatBubbles/main/ChatBubbles/images/icon.png",
-  "ImageUrls": [ "https://raw.githubusercontent.com/ShiftyKiwi/ChatBubbles/main/ChatBubbles/images/image1.png", "https://raw.githubusercontent.com/ShiftyKiwi/ChatBubbles/main/ChatBubbles/images/image2.png" ],
+  "RepoUrl": "https://github.com/VierAI/ChatBubbles",
+  "AcceptsFeedback": false,
+  "Changelog": "Changes from Chat Bubbles+:\nFeatures\n- Number settings (bubble timer, bubble scales, yalm distance, bubble queue) are sliders; Ctrl+click a slider to type a value\n\nFixes\n- Settings window crash (IndexOutOfRangeException) on current Dalamud, where the chat-type list grew past the plugin's channel slots\n\nOther\n- Own plugin icon and AI-generated code disclosure\n- Version is the upstream version with its 4th part x100 plus a two-digit fork revision",
+  "ImageUrls": [
+    "https://raw.githubusercontent.com/ShiftyKiwi/ChatBubbles/main/ChatBubbles/images/image1.png",
+    "https://raw.githubusercontent.com/ShiftyKiwi/ChatBubbles/main/ChatBubbles/images/image2.png"
+  ],
   "Tags": [
     "UI",
     "Roleplay",

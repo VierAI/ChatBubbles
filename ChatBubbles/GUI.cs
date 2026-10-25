@@ -1,4 +1,4 @@
-﻿using Dalamud.Game.Text;
+using Dalamud.Game.Text;
 using Dalamud.Interface;
 using Dalamud.Interface.Colors;
 using Dalamud.Plugin;
@@ -81,10 +81,10 @@ namespace ChatBubbles
                 ImGui.Separator();
                 // SPACING
 
-                ImGui.InputInt("Bubble Timer", ref _timer);
+                ImGui.SliderInt("Bubble Timer", ref _timer, 1, 60, "%d s");
                 if (ImGui.IsItemHovered())
                 {
-                    ImGui.SetTooltip("How long the bubble will last on screen.");
+                    ImGui.SetTooltip("How long the bubble will last on screen. (Ctrl+click to type)");
                 }
                 //Introduced a lot of issues
                 /*
@@ -96,20 +96,20 @@ namespace ChatBubbles
                         "Base the bubble time on the text length.");
                 }
                 */
-                ImGui.InputFloat("Players Bubble Scale", ref _bubbleSize);
+                ImGui.SliderFloat("Players Bubble Scale", ref _bubbleSize, 0.1f, 5f, "%.2f");
                 if (ImGui.IsItemHovered())
                 {
-                    ImGui.SetTooltip("Scales player chat bubbles. ONLY WORKS IF DEFAULT UI IS NOT SET TO 100%!");
+                    ImGui.SetTooltip("Scales player chat bubbles. ONLY WORKS IF DEFAULT UI IS NOT SET TO 100%! (Ctrl+click to type)");
                 }
-                ImGui.InputFloat("NPC Bubble scale", ref _defaultScale);
+                ImGui.SliderFloat("NPC Bubble scale", ref _defaultScale, 0.1f, 5f, "%.2f");
                 if (ImGui.IsItemHovered())
                 {
-                    ImGui.SetTooltip("Scales NPC Chat bubbles. ONLY WORKS IF DEFAULT UI IS NOT SET TO 100%!");
+                    ImGui.SetTooltip("Scales NPC Chat bubbles. ONLY WORKS IF DEFAULT UI IS NOT SET TO 100%! (Ctrl+click to type)");
                 }
-                ImGui.InputInt("Yalm distance", ref _yalmCap);
+                ImGui.SliderInt("Yalm distance", ref _yalmCap, 0, 100, "%d y");
                 if (ImGui.IsItemHovered())
                 {
-                    ImGui.SetTooltip("Anything over this distance in Yalms will not be shown");
+                    ImGui.SetTooltip("Anything over this distance in Yalms will not be shown (Ctrl+click to type)");
                 }
 
                 // SPACING
@@ -147,10 +147,10 @@ namespace ChatBubbles
 
                 if (_bubbleFunctionality == 0 || _bubbleFunctionality == 3)
                 {
-                    ImGui.InputInt("Maximum Bubble Queue", ref _queue);
+                    ImGui.SliderInt("Maximum Bubble Queue", ref _queue, 1, 10);
                     if (ImGui.IsItemHovered())
                     {
-                        ImGui.SetTooltip("How many bubbles can be queued to be seen per person.");
+                        ImGui.SetTooltip("How many bubbles can be queued to be seen per person. (Ctrl+click to type)");
                     }
                 }
                 
@@ -184,9 +184,12 @@ namespace ChatBubbles
                 }
 
                 ImGui.Columns(2);
-                foreach (var e in (XivChatType[]) Enum.GetValues(typeof(XivChatType)))
+                // Iterate the plugin's own channel table (_order) so the index always matches
+                // _yesno/_textColour/_bubbleColours*; XivChatType now has far more values than these arrays.
+                for (i = 0; i < _order.Count; i++)
                 {
-                    if (_yesno[i])
+                    var e = _order[i];
+                    if (i < _yesno.Length && _yesno[i] && i < _textColour.Length && i < _bubbleColours.Count && i < _bubbleColours2.Count)
                     {
                         var txtclr = BitConverter.GetBytes(_textColour[i].Choice);
                         if (ImGui.ColorButton($"Text Colour##{i}", new Num.Vector4(
@@ -250,7 +253,6 @@ namespace ChatBubbles
                         
                         ImGui.NextColumn();
                     }
-                    i++;
                 }
                                 
 
